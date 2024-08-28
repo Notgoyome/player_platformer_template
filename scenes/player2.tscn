@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7uubq1sksqgu"]
+
+[ext_resource type="Script" path="res://scripts/player/player2.gd" id="1_g4f3b"]
+[ext_resource type="Texture2D" uid="uid://bw7d5ltmnjnue" path="res://assets/spritesheet/test.png" id="2_w6eks"]
+[ext_resource type="Script" path="res://assets/spritesheet/PlayerMovementComponent2.gd" id="3_r8e8a"]
+[ext_resource type="Script" path="res://scripts/wall_jump_component.gd" id="4_quhr5"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="5_0tw1d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1stys"]
+atlas = ExtResource("2_w6eks")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1qcm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1stys")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cskjv"]
+size = Vector2(16, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jppw1"]
+size = Vector2(8, 12)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("movement_component")]
+position = Vector2(48, 152)
+script = ExtResource("1_g4f3b")
+movement_component = NodePath("PlayerMovementComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s1qcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_cskjv")
+
+[node name="PlayerMovementComponent" type="Node" parent="." node_paths=PackedStringArray("wall_jump_component")]
+script = ExtResource("3_r8e8a")
+gravity = 700
+jump_force = 265
+max_move_speed = 200
+wall_jump_component = NodePath("../WalljumpComponent")
+
+[node name="WalljumpComponent" type="Node2D" parent="."]
+script = ExtResource("4_quhr5")
+
+[node name="right" type="Area2D" parent="WalljumpComponent"]
+position = Vector2(32, 8)
+collision_layer = 2
+script = ExtResource("4_quhr5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalljumpComponent/right"]
+position = Vector2(-24, -8)
+shape = SubResource("RectangleShape2D_jppw1")
+
+[node name="left" type="Area2D" parent="WalljumpComponent"]
+position = Vector2(32, 8)
+collision_layer = 2
+script = ExtResource("4_quhr5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WalljumpComponent/left"]
+position = Vector2(-40, -8)
+shape = SubResource("RectangleShape2D_jppw1")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_0tw1d")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="body_entered" from="WalljumpComponent/right" to="WalljumpComponent" method="_on_right_body_entered"]
+[connection signal="body_exited" from="WalljumpComponent/right" to="WalljumpComponent" method="_on_right_body_exited"]
+[connection signal="body_entered" from="WalljumpComponent/left" to="WalljumpComponent" method="_on_left_body_entered"]
+[connection signal="body_exited" from="WalljumpComponent/left" to="WalljumpComponent" method="_on_left_body_exited"]

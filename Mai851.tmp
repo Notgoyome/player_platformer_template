@@ -1,0 +1,192 @@
+[gd_scene load_steps=12 format=4 uid="uid://dg46i2ppeav1t"]
+
+[ext_resource type="Texture2D" uid="uid://bw7d5ltmnjnue" path="res://assets/spritesheet/test.png" id="1_r1p43"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="2_1bbrf"]
+[ext_resource type="Script" path="res://scripts/player/PlayerMovementComponent.gd" id="3_a4hlq"]
+[ext_resource type="Script" path="res://scripts/state_machine.gd" id="4_djf8n"]
+[ext_resource type="Script" path="res://scripts/wall_jump_component.gd" id="5_vpdk0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mbn1c"]
+texture = ExtResource("1_r1p43")
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0/terrains_peering_bit/bottom_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0/terrains_peering_bit/right_side = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+4:0/0 = 0
+4:0/0/terrain_set = 0
+4:0/0/terrain = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:0/0/terrains_peering_bit/right_side = 0
+4:0/0/terrains_peering_bit/bottom_side = 0
+4:0/0/terrains_peering_bit/left_side = 0
+5:0/0 = 0
+5:0/0/terrain_set = 0
+5:0/0/terrain = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0/terrains_peering_bit/bottom_side = 0
+5:0/0/terrains_peering_bit/left_side = 0
+1:1/0 = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/top_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0/terrains_peering_bit/right_side = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/top_side = 0
+4:1/0 = 0
+4:1/0/terrain_set = 0
+4:1/0/terrain = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0/terrains_peering_bit/right_side = 0
+4:1/0/terrains_peering_bit/bottom_side = 0
+4:1/0/terrains_peering_bit/left_side = 0
+4:1/0/terrains_peering_bit/top_side = 0
+5:1/0 = 0
+5:1/0/terrain_set = 0
+5:1/0/terrain = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0/terrains_peering_bit/bottom_side = 0
+5:1/0/terrains_peering_bit/left_side = 0
+5:1/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0/terrains_peering_bit/top_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0/terrains_peering_bit/right_side = 0
+3:2/0/terrains_peering_bit/top_side = 0
+4:2/0 = 0
+4:2/0/terrain_set = 0
+4:2/0/terrain = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:2/0/terrains_peering_bit/right_side = 0
+4:2/0/terrains_peering_bit/left_side = 0
+4:2/0/terrains_peering_bit/top_side = 0
+5:2/0 = 0
+5:2/0/terrain_set = 0
+5:2/0/terrain = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:2/0/terrains_peering_bit/left_side = 0
+5:2/0/terrains_peering_bit/top_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0/terrains_peering_bit/right_side = 0
+4:3/0 = 0
+4:3/0/terrain_set = 0
+4:3/0/terrain = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:3/0/terrains_peering_bit/right_side = 0
+4:3/0/terrains_peering_bit/left_side = 0
+5:3/0 = 0
+5:3/0/terrain_set = 0
+5:3/0/terrain = 0
+5:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:3/0/terrains_peering_bit/left_side = 0
+2:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qq7r1"]
+physics_layer_0/collision_layer = 3
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_mbn1c")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1stys"]
+atlas = ExtResource("1_r1p43")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1qcm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1stys")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cskjv"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jppw1"]
+size = Vector2(17, 16)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAgAAAACAAEAAAAAAAcAAAACAAEAAAAAAAYAAAACAAEAAAAAAAUAAAACAAEAAAAAAAQAAAACAAEAAAAAAAMAAAACAAEAAAAAAAIAAAACAAEAAAAAAAEAAAACAAEAAAAAAAAAAAACAAAAAAATAAoAAAAFAAMAAAASAAoAAAAEAAMAAAARAAoAAAAEAAMAAAAQAAoAAAAEAAMAAAAPAAoAAAAEAAMAAAAOAAoAAAAEAAMAAAANAAoAAAAEAAMAAAAMAAoAAAAEAAMAAAALAAoAAAAEAAMAAAAKAAoAAAAEAAMAAAAJAAoAAAAEAAMAAAAIAAoAAAAEAAMAAAAHAAoAAAAEAAMAAAAGAAoAAAAEAAMAAAAFAAoAAAAEAAMAAAAEAAoAAAAEAAMAAAADAAoAAAAEAAMAAAACAAoAAAAEAAMAAAABAAoAAAAEAAMAAAAAAAoAAAADAAIAAAAAAAkAAAACAAEAAAAKAAgAAAAEAAIAAAAJAAgAAAAEAAIAAAAIAAgAAAAEAAIAAAAHAAgAAAADAAIAAAAMAAgAAAAEAAIAAAAMAAcAAAAEAAEAAAAMAAYAAAAEAAEAAAAMAAUAAAAEAAEAAAAMAAQAAAAFAAAAAAALAAgAAAAEAAIAAAALAAcAAAAEAAEAAAALAAYAAAAEAAEAAAALAAUAAAAEAAEAAAALAAQAAAAEAAAAAAAKAAcAAAAEAAEAAAAKAAYAAAAEAAEAAAAKAAUAAAAEAAEAAAAKAAQAAAAEAAAAAAAJAAcAAAAEAAEAAAAJAAYAAAAEAAEAAAAJAAUAAAAEAAEAAAAJAAQAAAADAAAAAAAIAAcAAAAEAAEAAAAIAAYAAAAEAAEAAAAIAAUAAAAEAAAAAAAHAAcAAAADAAEAAAAHAAYAAAADAAEAAAAHAAUAAAADAAAAAAAOAAcAAAAFAAIAAAAOAAYAAAAFAAEAAAAOAAUAAAAFAAAAAAANAAcAAAAEAAEAAAANAAYAAAAEAAEAAAANAAUAAAAEAAAAAAANAAgAAAAFAAIAAAA=")
+tile_set = SubResource("TileSet_qq7r1")
+
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("movement_component")]
+position = Vector2(48, 152)
+script = ExtResource("2_1bbrf")
+movement_component = NodePath("PlayerMovementComponent")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_s1qcm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_cskjv")
+
+[node name="PlayerMovementComponent" type="Node" parent="Player" node_paths=PackedStringArray("wall_jump_component")]
+script = ExtResource("3_a4hlq")
+wall_jump_component = NodePath("../WalljumpComponent")
+
+[node name="WalljumpComponent" type="Node2D" parent="Player"]
+script = ExtResource("5_vpdk0")
+
+[node name="right" type="Area2D" parent="Player/WalljumpComponent"]
+position = Vector2(32, 8)
+collision_layer = 3
+script = ExtResource("5_vpdk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WalljumpComponent/right"]
+position = Vector2(-24, -8)
+shape = SubResource("RectangleShape2D_jppw1")
+
+[node name="left" type="Area2D" parent="Player/WalljumpComponent"]
+position = Vector2(32, 8)
+script = ExtResource("5_vpdk0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WalljumpComponent/left"]
+position = Vector2(-40, -8)
+shape = SubResource("RectangleShape2D_jppw1")
+
+[node name="StateMachine" type="Node" parent="Player"]
+script = ExtResource("4_djf8n")
+
+[connection signal="body_entered" from="Player/WalljumpComponent/right" to="Player/WalljumpComponent" method="_on_right_body_entered"]
+[connection signal="body_exited" from="Player/WalljumpComponent/right" to="Player/WalljumpComponent" method="_on_right_body_exited"]
+[connection signal="body_entered" from="Player/WalljumpComponent/left" to="Player/WalljumpComponent" method="_on_left_body_entered"]
+[connection signal="body_exited" from="Player/WalljumpComponent/left" to="Player/WalljumpComponent" method="_on_left_body_exited"]
