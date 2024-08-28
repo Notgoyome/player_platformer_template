@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://dg46i2ppeav1t"]
+[gd_scene load_steps=52 format=4 uid="uid://dg46i2ppeav1t"]
 
 [ext_resource type="Texture2D" uid="uid://bw7d5ltmnjnue" path="res://assets/spritesheet/test.png" id="1_r1p43"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="2_1bbrf"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/camera/camera_2d.gd" id="12_n2av7"]
 [ext_resource type="PackedScene" uid="uid://dvr2o51dxbj0n" path="res://scripts/player/spell/spell_component.tscn" id="14_a1fq7"]
 [ext_resource type="Script" path="res://scripts/player/spell/spell_component.gd" id="15_xa5wy"]
+[ext_resource type="PackedScene" uid="uid://cf3bq05q43b7u" path="res://scripts/player/spell/fireball.tscn" id="16_1yc12"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mbn1c"]
 texture = ExtResource("1_r1p43")
@@ -437,6 +438,7 @@ player = NodePath("../..")
 
 [node name="Camera2D" type="Camera2D" parent="Player2"]
 position_smoothing_enabled = true
+position_smoothing_speed = 10.0
 script = ExtResource("12_n2av7")
 
 [node name="Area2D" type="Area2D" parent="Player2/Camera2D"]
@@ -446,5 +448,6 @@ shape = SubResource("RectangleShape2D_kr4w1")
 
 [node name="SpellComponent" parent="Player2" instance=ExtResource("14_a1fq7")]
 script = ExtResource("15_xa5wy")
+fireball = ExtResource("16_1yc12")
 
 [connection signal="body_exited" from="Player2/Camera2D/Area2D" to="Player2/Camera2D" method="_on_area_2d_body_exited"]

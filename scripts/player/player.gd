@@ -47,6 +47,7 @@ var has_buffer_jump : bool = false
 @onready var animation_state : AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+	add_group()
 	wall_slide_g = fall_velocity / 8
 	pass # Replace with function body.
 
@@ -105,3 +106,8 @@ func add_jump_buffer():
 		has_buffer_jump = false
 	)
 	timer.start()
+
+
+func add_group():
+	add_to_group("entity")
+	pass

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf3bq05q43b7u"]
+
+[ext_resource type="Script" path="res://fireball.gd" id="1_i6nrs"]
+[ext_resource type="Texture2D" uid="uid://bw7d5ltmnjnue" path="res://assets/spritesheet/test.png" id="2_5ywn5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iepui"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtxvw"]
+radius = 72.0
+
+[node name="Fireball" type="StaticBody2D" node_paths=PackedStringArray("push_area")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_i6nrs")
+push_area = NodePath("PushArea/area")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5ywn5")
+hframes = 10
+vframes = 10
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iepui")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_iepui")
+
+[node name="PushArea" type="Area2D" parent="."]
+
+[node name="area" type="CollisionShape2D" parent="PushArea"]
+shape = SubResource("CircleShape2D_qtxvw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="PushArea" to="." method="_on_push_area_body_entered"]
+[connection signal="body_exited" from="PushArea" to="." method="_on_push_area_body_exited"]
