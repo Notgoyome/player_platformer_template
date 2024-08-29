@@ -1,11 +1,12 @@
 extends State
 
-@export var player : CharacterBody2D = null
+@export var player : Player = null
 var wj_jump_dir = 0
-var can_dash = true
+var can_walljump = true
 # Called when the node enters the scene tree for the first time.
 func enter() -> void:
-	can_dash = true
+	player.can_dash = true
+	can_walljump = true
 	player.can_move = false
 	player.can_jump = false
 	player.acceleration = player.wj_acceleration
@@ -17,15 +18,15 @@ func enter() -> void:
 		wj_jump_dir = 1
 	else:
 		wj_jump_dir = -1
-	if can_dash:
+	if can_walljump:
 		player.velocity.y = -player.wj_jump
 		player.velocity.x = wj_jump_dir * player.wj_force
-		can_dash = false
+		can_walljump = false
 	
 	player.animation_state.speed_scale = 1/player.jump_time
 	player.animation_state.play("jump")
 	player.animation_state.flip_h = wj_jump_dir != 1
-
+	player.direction = Vector2(wj_jump_dir, 0)
 	var timer = Timer.new()
 	timer.set_wait_time(player.wj_time)
 	timer.set_one_shot(true)
@@ -42,9 +43,11 @@ func enter() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func process(delta: float) -> void:
-	if Input.is_action_just_released("jump"):
-		player.velocity.y = max(player.velocity.y, player.velocity.y * 0.8)
-		player.velocity.x = player.velocity.move_toward(Vector2.ZERO, abs(player.velocity.x * 0.4)).x
+	if Input.is_action_just_pressed("dash"):
+		emit_signal("state_finished", self, "Dash")
+	# if Input.is_action_just_released("jump"):
+	# 	player.velocity.y = max(player.velocity.y, player.velocity.y * 0.8)
+	# 	player.velocity.x = player.velocity.move_toward(Vector2.ZERO, abs(player.velocity.x * 0.4)).x
 	player.velocity.x = player.velocity.move_toward(Vector2.ZERO, player.friction * delta).x
 	if player.is_on_floor():
 		emit_signal("state_finished", self, "Ground")

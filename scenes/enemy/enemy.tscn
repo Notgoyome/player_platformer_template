@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn36umy0j730d"]
+
+[ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_8t0ey"]
+[ext_resource type="PackedScene" uid="uid://cf4btjjx0aa6" path="res://scenes/state_machine.tscn" id="1_fromm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xs8ri"]
+size = Vector2(16, 16)
+
+[node name="Enemy" type="RigidBody2D"]
+script = ExtResource("1_8t0ey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xs8ri")
+
+[node name="StateMachine" parent="." instance=ExtResource("1_fromm")]

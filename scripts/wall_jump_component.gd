@@ -13,7 +13,6 @@ func _ready() -> void:
 
 
 func _on_left_body_entered(body:Node2D) -> void:
-	print(body.name)
 	#check if the body is the player
 	if body.name == "Player":
 		return

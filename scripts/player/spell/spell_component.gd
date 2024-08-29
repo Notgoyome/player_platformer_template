@@ -8,6 +8,8 @@ func _ready() -> void:
     pass
 
 func _process(delta: float) -> void:
+    # if Input.is_action_just_pressed("dash"):
+    #     cast()
     pass
 
 func cast() -> void:
@@ -24,8 +26,13 @@ func cast() -> void:
     pass
 
 func _input(event: InputEvent) -> void:
-    if event is InputEventMouseButton:
-        if event.is_pressed():
-            cast()
-        pass
     pass
+    # if event is InputEventMouseButton:
+    #     if event.is_pressed():
+    #         cast()
+    #     pass
+    # pass
+    # if event is InputEventKey:
+    #     if event.is_pressed() and event.
+    #         cast()
+    #     pass

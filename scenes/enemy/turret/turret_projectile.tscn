@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bulms1yx2huui"]
+
+[ext_resource type="PackedScene" uid="uid://5wxwybx4k6ok" path="res://scenes/enemy/enemy_spells/EnemyProjectile.tscn" id="1_525hm"]
+[ext_resource type="Script" path="res://scenes/enemy/turret/turret_projectile.gd" id="2_cv2u4"]
+[ext_resource type="PackedScene" uid="uid://exqq841sfehg" path="res://scenes/health_component.tscn" id="3_rkas0"]
+
+[node name="EnemyProjectile" instance=ExtResource("1_525hm")]
+disable_mode = 2
+script = ExtResource("2_cv2u4")
+
+[node name="HealthComponent" parent="." index="2" node_paths=PackedStringArray("target_kill") instance=ExtResource("3_rkas0")]
+target_kill = NodePath("..")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

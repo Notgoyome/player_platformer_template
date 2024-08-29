@@ -35,6 +35,13 @@ func process(delta: float) -> void:
 		emit_signal("state_finished", self, "WallJump")
 		player.has_buffer_jump = false
 		return
+	if Input.is_action_just_pressed("dash"):
+		timer.stop()
+		player.direction = player.get_wall_normal()
+		#flip the texture
+		player.animation_state.flip_h = player.get_wall_normal().x != 1
+		emit_signal("state_finished", self, "Dash")
+		return
 	pass
 
 func wall_slide(delta):

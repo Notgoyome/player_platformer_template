@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://5wxwybx4k6ok"]
+
+[ext_resource type="Texture2D" uid="uid://blf4502naaw2r" path="res://assets/enemy/bullet.png" id="1_ldax6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d17df"]
+atlas = ExtResource("1_ldax6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eeyv8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d17df")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mtsm8"]
+radius = 7.0
+
+[node name="EnemyProjectile" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eeyv8")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mtsm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mtsm8")

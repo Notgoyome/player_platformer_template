@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://d4am3ylvtjv21"]
+
+[ext_resource type="PackedScene" uid="uid://bn36umy0j730d" path="res://scenes/enemy/enemy.tscn" id="1_qm43v"]
+[ext_resource type="Texture2D" uid="uid://bw7d5ltmnjnue" path="res://assets/spritesheet/test.png" id="2_36ju1"]
+[ext_resource type="Script" path="res://scripts/entity/enemy/turret/ray_component.gd" id="3_ierhk"]
+[ext_resource type="Texture2D" uid="uid://04q5x0rwwtuk" path="res://assets/icon.svg" id="4_e1f51"]
+[ext_resource type="Script" path="res://scenes/enemy/turret/scan.gd" id="5_jjrfp"]
+[ext_resource type="Script" path="res://scenes/enemy/turret/hunt.gd" id="6_ndyjx"]
+[ext_resource type="PackedScene" uid="uid://bulms1yx2huui" path="res://scenes/enemy/turret/turret_projectile.tscn" id="7_glyem"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vunw"]
+atlas = ExtResource("2_36ju1")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjpec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vunw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Turret" instance=ExtResource("1_qm43v")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_rjpec")
+
+[node name="RayComponent" type="Node2D" parent="." index="2"]
+script = ExtResource("3_ierhk")
+
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("initial_state")]
+initial_state = NodePath("Scan")
+
+[node name="Scan" type="Node" parent="StateMachine" index="0" node_paths=PackedStringArray("ray_component")]
+script = ExtResource("5_jjrfp")
+ray_component = NodePath("../../RayComponent")
+
+[node name="point" type="Sprite2D" parent="StateMachine/Scan" index="0"]
+position = Vector2(-1.90735e-06, 4.76837e-07)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_e1f51")
+
+[node name="Hunt" type="Node" parent="StateMachine" index="1" node_paths=PackedStringArray("ray_component")]
+script = ExtResource("6_ndyjx")
+ray_component = NodePath("../../RayComponent")
+bullet = ExtResource("7_glyem")
